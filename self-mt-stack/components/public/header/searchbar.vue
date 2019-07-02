@@ -1,5 +1,5 @@
 <template>
-  <div class="m-header">
+  <div class="search-panel">
     <el-row class="m-header-searchbar">
       <el-col :span="3" class="left">
         <img src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png" alt="美团" />
@@ -102,4 +102,6 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/css/public/layout.scss";
+@import "@/assets/css/public/header/index.scss";
 </style>
