@@ -9,7 +9,23 @@ const logger = require('koa-logger')
 const index = require('./routes/index')
 const users = require('./routes/users')
 const pv = require("./middleware/koa-pv")
-
+const mongoose = require('mongoose')
+const dbConf = require('./dbs/config.js')
+const session = require("koa-generic-session")
+const redisStore = require("koa-redis")
+app.keys = ["key", "keysInfo"]
+app.use(session({
+  key: "mt",
+  prefix: "mtpr",
+  store: new redisStore({
+    port: 6379,
+    host: "106.13.46.252",
+    password: 'redis1.q_252'
+  })
+}))
+mongoose.connect(dbConf.dbs, {
+  useNewUrlParser: true
+})
 // error handler
 onerror(app)
 app.use(pv());
