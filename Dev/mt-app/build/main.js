@@ -150,7 +150,7 @@ __webpack_require__.r(__webpack_exports__);
     }]
   },
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ["element-ui/lib/theme-chalk/index.css", "@/assets/css/main.css"],
+  css: ["element-ui/lib/theme-chalk/index.css", "./assets/css/main.css"],
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: ["@/plugins/element-ui"],
   // Auto import components (https://go.nuxtjs.dev/config-components)

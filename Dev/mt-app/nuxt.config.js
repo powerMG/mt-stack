@@ -11,7 +11,7 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ["element-ui/lib/theme-chalk/index.css", "@/assets/css/main.css"],
+  css: ["element-ui/lib/theme-chalk/index.css", "./assets/css/main.css"],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: ["@/plugins/element-ui"],
@@ -23,7 +23,7 @@ export default {
   buildModules: [],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [],
+  modules: ["@nuxtjs/axiso"],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
