@@ -22,6 +22,7 @@ import dbConfig from "./dbs/config";
 import passport from "./interface/utils/passport";
 import user from "./interface/users";
 import geo from "./interface/geo";
+import menus from "./interface/menus";
 
 // import apis from "./routes/api";
 // const api = require("./routes/api");
@@ -90,6 +91,7 @@ async function start() {
   }
   app.use(user.routes()).use(user.allowedMethods());
   app.use(geo.routes()).use(geo.allowedMethods());
+  app.use(menus.routes()).use(menus.allowedMethods());
   app.use(ctx => {
     ctx.status = 200; // koa defaults to 404 when it sees that status is unset
 

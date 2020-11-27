@@ -171,7 +171,7 @@ router.post("/verify", async ctx => {
 /**
  * 退出
  */
-router.get("/exit", async ctx => {  
+router.get("/exit", async ctx => {
   await ctx.logout();
   if (!ctx.isAuthenticated()) {
     ctx.body = {
@@ -205,8 +205,10 @@ router.get("/getUser", async ctx => {
  * 获取用户名
  */
 router.get("/aaa", async ctx => {
+  let result = await User.find();
+  console.log(result);
   ctx.body = {
-    list: ["中国"]
+    list: result
   };
 });
 
