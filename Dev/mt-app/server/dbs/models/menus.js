@@ -1,10 +1,10 @@
 import mongoos from "mongoose";
 
 const MenusSchema = mongoos.Schema({
-  menu: {
+  menus: {
     type: Array,
     required: true
   }
 });
 
-export default mongoos.model("menu", MenusSchema);
+export default mongoos.model("menus", MenusSchema);

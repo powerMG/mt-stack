@@ -3,13 +3,15 @@ import Vuex from "vuex";
 import axios from "axios";
 import geo from "./modules/geo";
 import menu from "./modules/menu";
+import home from "./modules/home";
 
 Vue.use(Vuex);
 const store = () =>
   new Vuex.Store({
     modules: {
       geo,
-      menu
+      menu,
+      home
     },
     actions: {
       async nuxtServerInit({ commit }) {
@@ -29,6 +31,13 @@ const store = () =>
         );
         const { menu } = dataForMenu.data;
         commit("menu/setMenu", statusForMenu === 200 ? menu : []);
+        // 初始化热门搜索
+        const { status: statusForHome, data: dataForHome } = await axios.get(
+          "http://localhost:3000/poi/hotPlace"
+        );
+        const result = dataForHome.data;
+        console.log(result);
+        commit("home/setHotPlace", statusForHome === 200 ? result : []);
       }
     }
   });

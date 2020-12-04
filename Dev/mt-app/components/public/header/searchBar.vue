@@ -14,21 +14,22 @@
             v-model="search"
             @focus="focus"
             @blur="blur"
+            @input="input"
           ></el-input>
           <button class="el-button el-button--primary">
             <i class="el-icon-search" />
           </button>
           <dl class="hotPlace" v-if="isHotplace">
             <dt>热门搜索</dt>
-            <dd>火锅</dd>
-            <dd>KTV</dd>
+            <dd v-for="item in $store.state.home.hotPlace" :key="item">
+              {{ item }}
+            </dd>
+            <!-- <dd>KTV</dd>
             <dd>日料</dd>
-            <dd>烧烤</dd>
+            <dd>烧烤</dd> -->
           </dl>
           <dl class="searchList" v-if="isSearchList">
-            <dd>火锅</dd>
-            <dd>驴肉火烧</dd>
-            <dd>炭火烧烤</dd>
+            <dd v-for="item in searchList" :key="item.name">{{ item.name }}</dd>
           </dl>
         </div>
         <p class="suggset">
@@ -77,11 +78,14 @@
 </template>
 
 <script>
+import axios from "axios";
+import _ from "lodash";
 export default {
   data() {
     return {
       search: "",
-      isFocus: false
+      isFocus: false,
+      searchList: []
     };
   },
   computed: {
@@ -104,7 +108,25 @@ export default {
       setTimeout(() => {
         self.isFocus = false;
       }, 200);
-    }
+    },
+    input: _.debounce(async function() {
+      let self = this;
+      self.searchList = [];
+      let {
+        status,
+        data: { data }
+      } = await axios({
+        url: "/poi/top",
+        params: {
+          input: self.search,
+          city: "三亚" // this.$store.state.geo.position.cname
+        }
+      });
+      console.log(data);
+      if (status === 200) {
+        self.searchList = (data && data.slice(0, 10)) || [];
+      }
+    }, 200)
   }
 };
 </script>
